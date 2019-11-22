@@ -1,0 +1,86 @@
+###################
+# Example Java Universe Job :: 
+# This launches multiple jobs, using the 'line' variable info to find 
+# and create the required files [this example would queue up 5 jobs]
+# 
+#
+####################
+
+universe         = vanilla
+getenv           = true
+environment      = PATH=/shares/bioinfo/bin:$ENV(PATH)
+executable       = /bioinfo/bin/trim_galore 
+arguments	 = --output_dir $(DATAoutput) -illumina --paired $(DATAinput)/$(line)_1.fq.gz $(DATAinput)/$(line)_2.fq.gz 
+log              = $(DATAoutput)/trim_galore_$(line).log
+output           = $(DATAoutput)/trim_galore_$(line).out
+error            = $(DATAoutput)/trim_galore_$(line).error
+request_cpus     = 1
+#request_memory   = 20 GB
+transfer_executable = False
+when_to_transfer_output = ON_EXIT
+
+DATAinput = /home/rparvathaneni/Sorghum_Panicle_RNASeq
+
+DATAoutput = /home/rparvathaneni/Sorghum_Panicle_RNASeq/trimmed
+
+
+##  Do not edit  ##
+accounting_group = $ENV(CONDOR_GROUP)
+###################
+
+line = N_1
+queue
+
+line = N_15
+queue
+
+line = N_16
+queue 
+
+line = N_17
+queue
+
+line = N_2
+queue
+
+line = N_30
+queue
+
+line = N_31
+queue 
+
+line = N_32
+queue
+
+line = N_3
+queue
+
+line = N_41
+queue
+
+line = N_4
+queue
+
+line = N_42
+queue
+
+line = N_43
+queue 
+
+line = N_52
+queue 
+
+line = N_53
+queue 
+
+line = N_7
+queue 
+
+line = N_8
+queue
+
+line = O_41
+queue 
+
+line = O_51
+queue
